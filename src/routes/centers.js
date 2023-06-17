@@ -33,7 +33,8 @@ router.get('/', async (ctx) => {
         }
     });
     console.log(bestInfo);
-    ctx.body = bestInfo;
+    // Retorna el centro mas cercano y todos tambien.
+    ctx.body = {"Nearest Center": bestInfo, "All Centers": centers}
 
   } catch (error) {
     ctx.status = 500;
