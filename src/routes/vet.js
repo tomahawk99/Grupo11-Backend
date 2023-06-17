@@ -13,11 +13,14 @@ router.get('/', async (ctx) => {
 
     let bestDistance = 7777777777777777;
     let bestInfo ={"name" : " ", "lat" : " ", "lon" : " ", "address" : " ", "website" : " ", "phone":" "};
+    let vetAll = [];
 
     vets.forEach(vet => {
         if(type=="public"){
             return;
         }
+        let vetcoords = {"lat":parseFloat(vet.coordinates.lat),"lon": parseFloat(vet.coordinates.lon)};
+        vetAll.push(vetcoords);
         let latdif = lat - parseFloat(vet.coordinates.lat);
         let londif = lon - parseFloat(vet.coordinates.lon);
         let distance = Math.sqrt(latdif**2  + londif**2);
@@ -34,7 +37,7 @@ router.get('/', async (ctx) => {
     });
     console.log(bestInfo);
     // Retorna el Vet mas cercano y todos tambien.
-    ctx.body = {"Nearest": bestInfo, "All": centers};
+    ctx.body = {"Nearest": bestInfo, "All": vetAll};
 
   } catch (error) {
     ctx.status = 500;
