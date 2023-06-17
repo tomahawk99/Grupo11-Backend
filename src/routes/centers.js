@@ -13,11 +13,14 @@ router.get('/', async (ctx) => {
 
     let bestDistance = 7777777777777777;
     let bestInfo ={"name" : " ", "lat" : " ", "lon" : " ", "address" : " ", "website" : " ", "phone":" "};
+    let centersAll = [];
 
     centers.forEach(center => {
         if(type=="public"){//faltaria implementarlo aca en centros, y en dentistas
             return;
         }
+        let centerscoords = {"lat":parseFloat(centers.coordinates.lat),"lon": parseFloat(centers.coordinates.lon)};
+        centersAll.push(centerscoords);
         let latdif = lat - parseFloat(center.coordinates.lat);
         let londif = lon - parseFloat(center.coordinates.lon);
         let distance = Math.sqrt(latdif**2  + londif**2);
@@ -34,7 +37,7 @@ router.get('/', async (ctx) => {
     });
     console.log(bestInfo);
     // Retorna el centro mas cercano y todos tambien.
-    ctx.body = {"Nearest": bestInfo, "All": centers};
+    ctx.body = {"Nearest": bestInfo, "All": centersAll};
 
   } catch (error) {
     ctx.status = 500;
