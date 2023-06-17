@@ -33,7 +33,8 @@ router.get('/', async (ctx) => {
         }
     });
     console.log(bestInfo);
-    ctx.body = bestInfo;
+    // Retorna el Vet mas cercano y todos tambien.
+    ctx.body = {"Nearest": bestInfo, "All": centers};
 
   } catch (error) {
     ctx.status = 500;
