@@ -16,10 +16,13 @@ router.get('/', async (ctx) => {
     let centersAll = [];
 
     centers.forEach(center => {
-        if(type=="public"){//faltaria implementarlo aca en centros, y en dentistas
+        if(type=="public" && center.access=="privado"){//faltaria implementarlo aca en centros, y en dentistas
             return;
         }
-        let centerscoords = {"lat":parseFloat(centers.coordinates.lat),"lon": parseFloat(centers.coordinates.lon)};
+        if(type=="private" && center.access=="publico"){//faltaria implementarlo aca en centros, y en dentistas
+            return;
+        }
+        let centerscoords = {"lat":parseFloat(center.coordinates.lat),"lon": parseFloat(center.coordinates.lon)};
         centersAll.push(centerscoords);
         let latdif = lat - parseFloat(center.coordinates.lat);
         let londif = lon - parseFloat(center.coordinates.lon);
@@ -55,6 +58,7 @@ const centers =
         "title": "Nueva Salud Providencia",
         "type": "Centro médico",
         "address": "Guardia Vieja 255, Oficina 1004, 7510186 Providencia, Región Metropolitana",
+        "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–21:00"
@@ -89,6 +93,7 @@ const centers =
         "title": "Médico General - Centro médico Providencia",
         "type": "Oficina médica",
         "address": "Av. Los Leones 220, oficina 505, 7510600 Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "11:00–20:00"
@@ -123,6 +128,7 @@ const centers =
         "title": "Medicenter",
         "type": "Centro médico",
         "address": "Av. Nueva Providencia 2155, 7510161 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "7:30–20:00"
@@ -157,6 +163,7 @@ const centers =
         "title": "Centro Médico Manuel Montt",
         "type": "Clínica ambulatoria",
         "address": "Av. Manuel Montt 427, 7500994 Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–20:00"
@@ -191,6 +198,7 @@ const centers =
         "title": "Centro Médico Antonio Varas.",
         "type": "Médico",
         "address": "Av. Providencia 1722, 7500498 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–20:00"
@@ -225,6 +233,7 @@ const centers =
         "title": "Instituto Radiologico Providencia (Resonancia)",
         "type": "Centro de diagnóstico por imagen",
         "address": "Dr. Manuel Barros Borgoño 430, 7500587 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–17:00"
@@ -259,6 +268,7 @@ const centers =
         "title": "Centro Médico Sanasalud Pedro de Valdivia",
         "type": "Hospital",
         "address": "Av. Pedro de Valdivia 195, 7500911 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "7:30–18:00"
@@ -293,6 +303,7 @@ const centers =
         "title": "Gesmed",
         "type": "Centro médico",
         "address": "Av. Andrés Bello 1249, 7500560 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "7:45–18:30"
@@ -327,6 +338,7 @@ const centers =
         "title": "Centro De Diagnostico Plaza Italia Limitada",
         "type": "Centro médico",
         "address": "Ramón Carnicer 17, 7500858 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:30"
@@ -361,6 +373,7 @@ const centers =
         "title": "Instituto Radiológico Providencia",
         "type": "Radiólogo",
         "address": "Av. Providencia 199, 7500775 Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "7:30–16:50"
@@ -395,6 +408,7 @@ const centers =
         "title": "Centro Médico del Trabajador - CMT Providencia",
         "type": "Centro médico",
         "address": "Barcelona 2050, Piso 2, 7510184 Providencia, Región Metropolitana",
+              "access": "publico",
         "schedule": {
             "lunes": [
                 "8:00–17:00"
@@ -429,6 +443,7 @@ const centers =
         "title": "CENTRO MÉDICO AMIM",
         "type": "Centro médico",
         "address": "Av. Los Leones 1727, 7510838 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–19:00"
@@ -463,6 +478,7 @@ const centers =
         "title": "Centro de Salud Familiar Dr. Alfonso Leng",
         "type": "Centro de salud",
         "address": "Av. Manuel Montt 303, 7500994 Providencia, Región Metropolitana",
+              "access": "publico",
         "schedule": {
             "lunes": [
                 "8:00–20:00"
@@ -497,6 +513,7 @@ const centers =
         "title": "Cesmedica",
         "type": "Centro médico",
         "address": "Av. Providencia 2019, 7510148 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:30–19:30"
@@ -531,6 +548,7 @@ const centers =
         "title": "PositronMed",
         "type": "Clínica ambulatoria",
         "address": "Julio Prado 714, 7501068 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–19:00"
@@ -565,6 +583,7 @@ const centers =
         "title": "Centro Médico Bulnes",
         "type": "Centro médico",
         "address": "Av. Vicuña Mackenna 4, piso 5, oficina 4, 7500824 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–19:00"
@@ -599,6 +618,7 @@ const centers =
         "title": "Clínica INDISA, Centro Médico Los Españoles",
         "type": "Hospital privado",
         "address": "Los Españoles 1855, 7520279 Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "Abierto las 24 horas"
@@ -633,6 +653,7 @@ const centers =
         "title": "Divergencia Salud",
         "type": "Centro médico",
         "address": "Av. Salvador 149, oficina 911, 7500710 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:00–20:00"
@@ -667,6 +688,7 @@ const centers =
         "title": "Centro Medico Provital",
         "type": "Centro médico",
         "address": "7500000 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–19:00"
@@ -701,6 +723,7 @@ const centers =
         "title": "Centro Médico Formed",
         "type": "Centro médico",
         "address": "Av. Nueva Providencia 1881, Of.1313, 7500520 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–21:30"
@@ -735,6 +758,7 @@ const centers =
         "title": "Clínica PlusVida",
         "type": "Centro médico",
         "address": "Eliodoro Yañez 2725, 7510394 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:00"
@@ -769,6 +793,7 @@ const centers =
         "title": "Vida Integra Nueva Providencia",
         "type": "Médico",
         "address": "Av. Nueva Providencia 2350, 7510063 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–20:30"
@@ -803,6 +828,7 @@ const centers =
         "title": "Centro San Vicente De Paul",
         "type": "Médico",
         "address": "Almte. Pastene 249, 7500509 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–20:00"
@@ -837,6 +863,7 @@ const centers =
         "title": "Provisam - Centro de Salud Mental y Comunitario Dr.Greve",
         "type": "Servicio de salud mental",
         "address": "Av. Manuel Montt 2051, 7501415 Providencia, Región Metropolitana",
+              "access": "publico",
         "schedule": {
             "lunes": [
                 "8:00–19:00"
@@ -871,6 +898,7 @@ const centers =
         "title": "Centro Médico E.F.Medica",
         "type": "Centro médico",
         "address": "Coyancura 2270, piso 10, of.1012, 7510124 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:30–19:00"
@@ -905,6 +933,7 @@ const centers =
         "title": "Centro Médico El Buen Doctor, SpA",
         "type": "Kinesiólogo",
         "address": "La Concepción 81, Oficina 405, 7500000 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:00–18:00"
@@ -939,6 +968,7 @@ const centers =
         "title": "Clínica INDISA, Centro Médico Los Conquistadores",
         "type": "Hospital privado",
         "address": "Los Conquistadores 1926, 7520252 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "Abierto las 24 horas"
@@ -973,6 +1003,7 @@ const centers =
         "title": "Centro Medico de Esp. Infantiles",
         "type": "Centro médico",
         "address": "José Manuel Infante 100, Of. 202, 7750000 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:00"
@@ -1007,6 +1038,7 @@ const centers =
         "title": "Centro Médico Integral Cemesi",
         "type": "Centro médico",
         "address": "Guardia Vieja 339, 7510249 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:00"
@@ -1041,6 +1073,7 @@ const centers =
         "title": "Centro Médico SEMMI",
         "type": "Centro médico",
         "address": "Joaquín Díaz Garcés 05, 7501367 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:00–17:00"
@@ -1075,6 +1108,7 @@ const centers =
         "title": "Consultas Médicas Bienestar Integral",
         "type": "Centro médico",
         "address": "Av. Salvador 95, of 601, 7500710 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:00–19:00"
@@ -1109,6 +1143,7 @@ const centers =
         "title": "Centro Médico Humana Salud Spa",
         "type": "Médico de medicina general",
         "address": "Dr M Barros Borgoño 110 1109, 7500585 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:30–17:00"
@@ -1143,6 +1178,7 @@ const centers =
         "title": "Clínica Estétika Médica Providencia",
         "type": "Centro médico",
         "address": "Vieja, Guardia Vieja 202, Of.301, Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:00–20:00"
@@ -1177,6 +1213,7 @@ const centers =
         "title": "Centro de Psiquiatría Providencia",
         "type": "Centro médico",
         "address": "Av. Providencia 1650, oficina 1110, 7500027 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:30–18:00"
@@ -1211,6 +1248,7 @@ const centers =
         "title": "Instituto Médico La Concepción",
         "type": "Centro médico",
         "address": "La Concepción 191, Oficina 202, 7500010 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:30–19:30"
@@ -1245,6 +1283,7 @@ const centers =
         "title": "MEDILEAN",
         "type": "Centro médico",
         "address": "Luis Thayer Ojeda Norte 0130, oficina 316, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "11:00–18:00"
@@ -1279,6 +1318,7 @@ const centers =
         "title": "Centro Médico MEDKIN",
         "type": "Centro médico",
         "address": "Av. Los Leones 220, Oficina 802-803, 7510600 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–21:00"
@@ -1313,6 +1353,7 @@ const centers =
         "title": "Fonoaudiología | Fonoaudiólogo | Centro | Terapia | Consulta | Fonasa | Isapre | Centro Integral de Terapias",
         "type": "Centro médico",
         "address": "Av. Nueva Providencia 1881, Oficina 212, 7500520 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:00–21:00"
@@ -1347,6 +1388,7 @@ const centers =
         "title": "Consulta Médica",
         "type": "Médico",
         "address": "Almte. Pastene 185, 7500535 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "17:00–20:00"
@@ -1381,6 +1423,7 @@ const centers =
         "title": "CENTRO MÉDICO TRATAMIENTOS DEL PIE Providencia",
         "type": "Podólogo",
         "address": "Av. Salvador 149, oficina 609, 7500000 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:30–18:30"
@@ -1415,6 +1458,7 @@ const centers =
         "title": "Sociedad Doctor Gonzalez Folch SPA",
         "type": "Centro de salud",
         "address": "Alfredo Barros Errázuriz 1954, of 307, 7500523 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–19:00"
@@ -1449,6 +1493,7 @@ const centers =
         "title": "Centro Médico Novalife",
         "type": "Centro médico",
         "address": "Dr. Manuel Barros Borgoño 71, 7500593 Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:00"
@@ -1483,6 +1528,7 @@ const centers =
         "title": "Labocenter",
         "type": "Centro médico",
         "address": "Enrique Mac Iver 22 Santiago Centro, 8320261 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–17:00"
@@ -1517,6 +1563,7 @@ const centers =
         "title": "Centro Medico y Toma de Muestras CDIEM",
         "type": "Centro médico",
         "address": "María Luisa Santander 485, 7500859 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–20:00"
@@ -1551,6 +1598,7 @@ const centers =
         "title": "Centro Medico MIDAS SpA",
         "type": "Grupo médico",
         "address": "Rafael Cañas 16, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–20:00"
@@ -1585,6 +1633,7 @@ const centers =
         "title": "Natural Clinic",
         "type": "Centro médico",
         "address": "Av. Providencia 2093, piso 3, 7510148 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:00–19:30"
@@ -1619,6 +1668,7 @@ const centers =
         "title": "Auris Centro Médico",
         "type": "Centro de diagnóstico",
         "address": "Av. Manuel Montt 427, Piso 10, 7500994 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:30"
@@ -1653,6 +1703,7 @@ const centers =
         "title": "Centro Radiologico Fleming",
         "type": "Radiólogo",
         "address": "Pérez Valenzuela 1554, 7500035 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–19:00"
@@ -1687,6 +1738,7 @@ const centers =
         "title": "Centro Médico del Hospital del Trabajador ACHS",
         "type": "Hospital",
         "address": "Av. Vicuña Mackenna 210, Providencia, Región Metropolitana",
+              "access": "publico",
         "schedule": {
             "lunes": [
                 "8:00–20:00"
@@ -1721,6 +1773,7 @@ const centers =
         "title": "Centro Otorrinolaringologico Galeno Ltda",
         "type": "Médico",
         "address": "Av. Salvador 149, oficina 703, 7500710 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:30–12:00"
@@ -1755,6 +1808,7 @@ const centers =
         "title": "Clínica Nueva Costanera",
         "type": "Centro médico",
         "address": "Av. Manuel Montt 427, piso 7, 7500000 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–20:00"
@@ -1789,6 +1843,7 @@ const centers =
         "title": "Clinica El Bosque",
         "type": "Clínica ambulatoria",
         "address": "Eliodoro Yañez 2820, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–20:00"
@@ -1823,6 +1878,7 @@ const centers =
         "title": "CENTRO MEDICO LO SANO",
         "type": "Centro médico",
         "address": "Padre Mariano 391, oficina 607, 7500015 Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "11:00–13:00",
@@ -1862,6 +1918,7 @@ const centers =
         "title": "Centro Médico Ser Alma",
         "type": "Clínica ambulatoria",
         "address": "local 103 Providencia, Padre Mariano 236, 7500026 Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "15:00–18:00"
@@ -1896,6 +1953,7 @@ const centers =
         "title": "Clinica CMMC - Instituto de prevención y tratamiento del sobrepeso y obesidad",
         "type": "Centro médico",
         "address": "Avenida Providencia #1650 - Oficina 706 - 1407, Santiago, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:30–13:30",
@@ -1935,6 +1993,7 @@ const centers =
         "title": "SALUMA centro médico",
         "type": "Salud y bienestar",
         "address": "Av. Nueva Providencia 1881, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:30–19:30"
@@ -1969,6 +2028,7 @@ const centers =
         "title": "Provital Ciclo Neuronal - centro medico",
         "type": "Centro médico",
         "address": "De Las Claras 0195, piso 3, 7500000 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–19:00"
@@ -2003,6 +2063,7 @@ const centers =
         "title": "Clínica INDISA, Centro Médico de Diálisis",
         "type": "Hospital privado",
         "address": "Los Conquistadores 1972, 7500000 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "7:30–22:00"
@@ -2037,6 +2098,7 @@ const centers =
         "title": "Instituto Médico Cardiovascular - IMEC",
         "type": "Centro médico",
         "address": "Pedro de Valdivia Nte. 091, 7520265 Santiago, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:00"
@@ -2071,6 +2133,7 @@ const centers =
         "title": "Médicos 360",
         "type": "Centro médico",
         "address": "Dr. Manuel Barros Borgoño 110, Oficina 1010, 7500587 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:00"
@@ -2105,6 +2168,7 @@ const centers =
         "title": "Medical Sex Center",
         "type": "Centro médico",
         "address": "Coyancura 2270, Of 809, 7510124 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–19:00"
@@ -2139,6 +2203,7 @@ const centers =
         "title": "Centro Psicológico, Médico y de Salud Integral SuTerapia",
         "type": "Centro médico",
         "address": "Av. Luis Thayer Ojeda 0130, oficina 214, 7510008 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:30–13:00",
@@ -2177,6 +2242,7 @@ const centers =
         "title": "Pro vital Ciclo Neuronal Centro medico de Salud Mental",
         "type": "Centro médico",
         "address": "7500634 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–19:00"
@@ -2211,6 +2277,7 @@ const centers =
         "title": "Instituto de Medicina Integrativa Rudolph Virchow",
         "type": "Centro médico",
         "address": "Dr. Manuel Barros Borgoño 71, oficina 303, 7500593 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–16:30"
@@ -2245,6 +2312,7 @@ const centers =
         "title": "Centro OrigamiS",
         "type": "Clínica psiquiátrica",
         "address": "Av. Sta. María 2310, Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:30–21:00"
@@ -2279,6 +2347,7 @@ const centers =
         "title": "Centro Médico Gastrolap",
         "type": "Centro médico",
         "address": "La Concepción 81, 7855500 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:00"
@@ -2313,6 +2382,7 @@ const centers =
         "title": "Nueva Perspectiva",
         "type": "Centro médico",
         "address": "Las Urbinas 87, Of 17, 7510093 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–21:00"
@@ -2347,6 +2417,7 @@ const centers =
         "title": "Centro Diagnóstico Por Imagenes Blanco Ltda.",
         "type": "Médico",
         "address": "Av. Salvador 65, 7500710 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "7:30–22:00"
@@ -2381,6 +2452,7 @@ const centers =
         "title": "Vida Íntegra Dermatología",
         "type": "Centro médico",
         "address": "Av. Nueva Providencia 2350, 7510063 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:00–20:30"
@@ -2415,6 +2487,7 @@ const centers =
         "title": "Centro Orgánico de Salud",
         "type": "Psiquiatra",
         "address": "Suecia 15, 7510089 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–18:00"
@@ -2449,6 +2522,7 @@ const centers =
         "title": "Médico Broncopulmonar",
         "type": "Centro médico",
         "address": "Antonio Bellet 193, 7500025 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "17:00–20:00"
@@ -2483,6 +2557,7 @@ const centers =
         "title": "Senocare Centro de Imagenes",
         "type": "Centro médico",
         "address": "Eliodoro Yañez 2063, Ofic. 201, 7510524 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–13:00",
@@ -2522,6 +2597,7 @@ const centers =
         "title": "Centro Medico de Diabéticos de Chile",
         "type": "Centro médico",
         "address": "Quebec 496, 7500347 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "8:30–19:00"
@@ -2556,6 +2632,7 @@ const centers =
         "title": "Centro Psicosalud",
         "type": "Clínica psiquiátrica",
         "address": "Av. Nueva Providencia 2250, P 4, 7510090 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "12:00–21:00"
@@ -2590,6 +2667,7 @@ const centers =
         "title": "Centro de Bienestar para la Mujer Spa",
         "type": "Clínica ginecológica",
         "address": "Av. Nueva Providencia 1945, 7500000 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "9:00–19:00"
@@ -2624,6 +2702,7 @@ const centers =
         "title": "Psiquiatras en Providencia - Smconsultamedica.cl",
         "type": "Clínica psiquiátrica",
         "address": "Antonio Varas 303, oficina 1010, 7500580 Providencia, Región Metropolitana",
+              "access": "privado",
         "schedule": {
             "lunes": [
                 "10:30–20:00"
